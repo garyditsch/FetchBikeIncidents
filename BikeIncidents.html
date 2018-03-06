@@ -1,0 +1,27 @@
+<!Doctype html>
+
+<html>
+    <head>
+        <title>25 Most Recent Bike Incidents around Lexington</title>
+    </head>
+    <body>
+        <h1>What happened:</h1>
+        <button id="getData">Get Incidents</button>
+
+        <script>
+            document.getElementById('getData').addEventListener('click', getIncidents);
+        
+            apiURL = 'https://bikewise.org:443/api/v2/locations?proximity=lexington&proximity_square=25&limit=25'
+
+            function getIncidents(){
+                fetch(apiURL)
+                    .then(function(response){
+                        return(response.json());
+                    })
+                    .then(function(data){
+                        console.log(data);
+                    })
+            }
+        </script>
+    </body>
+</html>
