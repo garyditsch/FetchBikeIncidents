@@ -7,12 +7,13 @@
     <body>
         <h1>What happened:</h1>
         <button id="getData">Get Incidents</button>
+        <div id="incident">No incidents yet!</div>
 
         <script>
             document.getElementById('getData').addEventListener('click', getIncidents);
         
             apiURL = 'https://bikewise.org:443/api/v2/locations?proximity=lexington&proximity_square=25&limit=25'
-
+            
             function getIncidents(){
                 fetch(apiURL)
                     .then(function(response){
@@ -20,6 +21,9 @@
                     })
                     .then(function(data){
                         console.log(data);
+                        incidents = `${data.features[0].properties.id}`
+                        console.log(incidents);
+                        document.getElementById('incident').innerHTML = incidents
                     })
             }
         </script>
