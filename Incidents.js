@@ -1,7 +1,9 @@
 
-    document.getElementById('getData').addEventListener('click', getIncidents);
+    window.addEventListener("load", getIncidents);
 
-    apiURL = 'https://bikewise.org:443/api/v2/locations?proximity=lexington&proximity_square=25&limit=25'
+    // document.getElementById('getData').addEventListener('click', getIncidents);
+
+    apiURL = 'https://bikewise.org:443/api/v2/locations?proximity=lexington&proximity_square=150&limit=25'
 
     function convertTimestamp(timestamp) {
         var d = new Date(timestamp * 1000),	// Convert the passed timestamp to milliseconds
