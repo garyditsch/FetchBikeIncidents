@@ -1,0 +1,58 @@
+
+    document.getElementById('getData').addEventListener('click', getIncidents);
+
+    apiURL = 'https://bikewise.org:443/api/v2/locations?proximity=lexington&proximity_square=25&limit=25'
+
+    function convertTimestamp(timestamp) {
+        var d = new Date(timestamp * 1000),	// Convert the passed timestamp to milliseconds
+            yyyy = d.getFullYear(),
+            mm = ('0' + (d.getMonth() + 1)).slice(-2),	// Months are zero based. Add leading 0.
+            dd = ('0' + d.getDate()).slice(-2),			// Add leading 0.
+            hh = d.getHours(),
+            h = hh,
+            min = ('0' + d.getMinutes()).slice(-2),		// Add leading 0.
+            ampm = 'AM',
+            time;
+
+        if (hh > 12) {
+            h = hh - 12;
+            ampm = 'PM';
+        } else if (hh === 12) {
+            h = 12;
+            ampm = 'PM';
+        } else if (hh == 0) {
+            h = 12;
+        }
+
+        // ie: 2013-02-18, 8:35 AM
+        time =  mm + '/' + dd + '/' + yyyy;
+
+        return time;
+    }
+
+    function getIncidents(){
+        fetch(apiURL)
+        .then(function(response){
+                return(response.json());
+        })
+        .then(function(data){
+            console.log(data);
+            let first = ` `;
+            let count = 0
+            data.features.map(function(x){
+                count++
+                first += `
+                    <hr>
+                    <ul>
+                        <li>
+                          ${count} :
+                          ${convertTimestamp(x.properties.occurred_at)} |
+                          ${x.properties.type} |
+                          ${x.properties.id}
+                        </li>
+                    </ul>
+                `
+            })
+            document.getElementById('incident').innerHTML = first
+        })
+    }
