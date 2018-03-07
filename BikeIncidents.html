@@ -16,15 +16,29 @@
             
             function getIncidents(){
                 fetch(apiURL)
-                    .then(function(response){
+                .then(function(response){
                         return(response.json());
+                })
+                .then(function(data){
+                    console.log(data);
+                    let first = ` `;
+                    let count = 0
+                    data.features.map(function(x){
+                        count++
+                        first += `
+                            <hr>
+                            <ul>
+                                <li>
+                                  ${count} :
+                                  ${x.properties.type} |
+                                  ${x.properties.id} |
+                                  ${x.properties.occurred_at}
+                                </li>
+                            </ul>
+                        `
                     })
-                    .then(function(data){
-                        console.log(data);
-                        incidents = `${data.features[0].properties.id}`
-                        console.log(incidents);
-                        document.getElementById('incident').innerHTML = incidents
-                    })
+                    document.getElementById('incident').innerHTML = first
+                })
             }
         </script>
     </body>
