@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Pedestrian Hit",
+        "location": "Euclid St."
+    },
+    {
+        "id": 2,
+        "name": "Stolen Bike",
+        "location": "UK Campus."
+    },
+    {
+        "id": 3,
+        "name": "Cyclist Crash",
+        "location": "Legacy Trail"
+    }
+]

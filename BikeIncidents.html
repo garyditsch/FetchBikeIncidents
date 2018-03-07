@@ -10,11 +10,15 @@
 
         <script>
             document.getElementById('getData').addEventListener('click', getIncidents);
-        
-            apiURL = 'https://bikewise.org:443/api/v2/locations?proximity=lexington&proximity_square=25&limit=25'
 
+            dataFile = './incidents.json';
+
+            // you will need a server running for this to work
+            // you will get CORS errors if you don't
+            // there's a plugin atom-live-server for atom
+            // the live server is also available in visual studio marketplace
             function getIncidents(){
-                fetch(apiURL)
+                fetch(dataFile)
                     .then(function(response){
                         return(response.json());
                     })
